@@ -1,14 +1,22 @@
 ---
-title: "Tandom Power Calculations"
+title: "NNF Tandemprogram Application Power Analysis"
+author: "Tune Pers and Pascal Timshel, University of Copenhagen."
+date: "January 2017"
 output:
-  pdf_document: default
-  html_notebook: default
   html_document: default
+  html_notebook: default
+  pdf_document: default
 ---
 
 ```{r global_options, include=FALSE}
 knitr::opts_chunk$set(warning=FALSE, message=FALSE)
 ```
+
+
+### Abstract
+
+In this report we perform power analysis for detecting differentially expressed metabolites using a paired t-test.
+With 56 patients, we can detect a two-fold increase in metabolite levels with 80% statistical power. For this power calculation, we assumed a significance level of 5% while controlling for family-wise error of 300 metabolite tests. The effect size and variance for the calculation was estimated based on a metabolomics data from the ADIGEN cohort
 
 
 ### Initialization
@@ -28,7 +36,7 @@ setwd(wd)
 ```
 
 
-We start by reading in the data.
+We start by reading in the ADIGEN data.
 ```{r load data}
 ### Load data
 file.data <- "ADIGEN_metabolomics.csv"
@@ -51,7 +59,7 @@ str(df.data.melt)
 ```
 
 
-### Count
+### Count samples and metabolites
 ```{r count samples}
 ### count number of samples
 length(unique(df.data.melt$variable)) # --> 388 samples
@@ -228,21 +236,9 @@ plot_power_curve(seq(.45,.7,.01))
 ```
 
 
+
 # Appendix
-
-#### Effect size
-* Two-sample t-test: Cohen's d = (mu1-mu2)/sigma_pooled
-    + sigma_pooled = ... standard pooling procedure ...
-* Two-sample paired t-test
-    + use dz (see below)
-
-**How can I calculate the effect-size for a repeated measures t-test?**
-Available from: https://www.researchgate.net/post/How_can_I_calculate_the_effect-size_for_a_repeated_measures_t-test [accessed Jan 6, 2017].
-
-1. create a new variable of the differences between both groups (z = Time1 - Time2),
-2. obtain the mean (Mz) and standard deviation (SDz) for this new variable,
-3. divide Mz by SDz, which will give you the effect size for dependent groups (dz = Mz / SDz) 
-
+...
 
 # References
 
