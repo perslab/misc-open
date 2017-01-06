@@ -1,8 +1,9 @@
 ---
 title: "Tandom Power Calculations"
 output:
-  html_document: default
+  pdf_document: default
   html_notebook: default
+  html_document: default
 ---
 
 ```{r global_options, include=FALSE}
@@ -206,8 +207,8 @@ plot_power_curve <- function(d) {
   abline(v=0, h=seq(0,yrange[2],50), lty=2, col="grey89")
   abline(h=0, v=seq(xrange[1],xrange[2],.02), lty=2,
      col="grey89")
-  title("Sample Size Estimation for Paired T-test \n
-    Sig=%.2g (Two-tailed)", alpha_FWER_corrected)
+  title(sprintf("Sample Size Estimation for Paired T-test \n
+    Sig=%.2g (Two-tailed)", alpha_FWER_corrected))
   legend("topright", title="Power", as.character(p),
      fill=colors)
 
